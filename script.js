@@ -18,6 +18,8 @@ const docRef = db.collection("calendario").doc("dados");
 docRef.get().then((doc) => {
   if (doc.exists) {
     console.log("Dados do Firebase:", doc.data());
+    dados = doc.data();
+    gerarCalendario(); // <- carrega dados se existirem
   } else {
     console.log("Documento não encontrado.");
   }
@@ -101,15 +103,16 @@ function gerarCalendario(mes = mesAtual, ano = anoAtual) {
         ${feriadoDescricao}
       </div>
     `;
-  } // <-- esta chave fecha a função gerarCalendario()
+  }
+} // ← FECHA corretamente a função gerarCalendario()
 
+// Evento para fechar menus ao clicar fora
 document.body.addEventListener('click', function (event) {
-  // Verifica se o clique foi fora dos menus
   if (!event.target.closest('.menu-opcoes') && !event.target.classList.contains('menu-dia')) {
     document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
   }
 });
-  
+
 function toggleMenu(event, data) {
   event.stopPropagation();
   document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
@@ -121,7 +124,6 @@ function adicionarIcone(data, emoji) {
   const texto = prompt('Texto para o ícone:');
   if (!texto) return;
 
-  // Garante que dados[data] e dados[data].icones existam
   if (!dados[data]) dados[data] = {};
   if (!dados[data].icones) dados[data].icones = [];
 
@@ -184,7 +186,6 @@ function mudarMes(direcao) {
 }
 
 function fecharMenus() {
-  // Esconder menus dropdown ou popups
   const menus = document.querySelectorAll('.menu-aberto');
   menus.forEach(menu => menu.classList.remove('menu-aberto'));
 }
