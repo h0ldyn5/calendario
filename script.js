@@ -1,12 +1,13 @@
 
 // Firebase config (substitua pelos seus dados reais)
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_DOMINIO.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_BUCKET.appspot.com",
-  messagingSenderId: "SEU_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyAnK_vQJtLNaeMFmQC6M0vCiu_ZB1E1PX0",
+  authDomain: "calendariohorizon-a66ce.firebaseapp.com",
+  projectId: "calendariohorizon-a66ce",
+  storageBucket: "calendariohorizon-a66ce.firebasestorage.app",
+  messagingSenderId: "253407645877",
+  appId: "1:253407645877:web:007168909639fadb326efc",
+  measurementId: "G-3SNNHMEKG6"
 };
 
 firebase.initializeApp(firebaseConfig);
