@@ -112,7 +112,11 @@ function toggleMenu(event, data) {
 function adicionarIcone(data, emoji) {
   const texto = prompt('Texto para o ícone:');
   if (!texto) return;
-  dados[data] = dados[data] || { icones: [] };
+
+  // Garante que dados[data] e dados[data].icones existam
+  if (!dados[data]) dados[data] = {};
+  if (!dados[data].icones) dados[data].icones = [];
+
   dados[data].icones.push({ emoji, texto });
   salvar();
   gerarCalendario();
