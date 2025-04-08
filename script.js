@@ -13,7 +13,8 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const docRef = db.collection("calendario").doc("dados");
-
+}
+  
 let dados = {};
 
 const feriadosDetalhados = {
