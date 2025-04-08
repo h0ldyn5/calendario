@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendário de Conteúdo | Horizon</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body onclick="fecharMenus(event)">
+  <header class="header">
+    <div class="branding">
+      <h1>Horizon</h1>
+      <p class="sub">Calendário de Conteúdo</p>
+    </div>
+    <div class="cliente">
+      <strong>Cliente: Arena R10</strong><br>
+      Plano: Padrão<br>
+      3 vídeos / mês<br>
+      8 artes / mês<br>
+      Adicionais: tráfego pago, captação
+    </div>
+  </header>
+
+  <div class="mes-navegacao">
+    <button onclick="mudarMes(-1)">&lt; Mês anterior</button>
+    <h2 id="mes-atual">Abril / 2025</h2>
+    <button onclick="mudarMes(1)">Próximo mês &gt;</button>
+  </div>
+
+  <div class="calendario" id="calendario"></div>
+
+  <div class="legenda">
+    <p><span style="background:#ffecec"></span> Domingo</p>
+    <p><span style="background:#d4f4fa"></span> Feriado Nacional</p>
+    <p><span style="background:#d0f0d0"></span> Postagem concluída</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+}
+
+.header {
+  background: linear-gradient(to right, #29295c, #2d9eb5);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.branding h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.branding .sub {
+  font-size: 0.95em;
+  opacity: 0.85;
+}
+
+.cliente {
+  flex: 1;
+  text-align: left;
+  align-items: right;
+  margin: 20px;
+}
+
+.mes-navegacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.mes-navegacao button {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.mes-navegacao button:hover {
+  background: #084298;
+}
+
+.calendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin: 0 20px;
+}
+
+.dia {
+  background: white;
+  border-radius: 6px;
+  padding: 8px;
+  min-height: 100px;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 0.9em;
+}
+
+.domingo {
+  background-color: #ffecec;
+}
+
+.feriado {
+  background-color: #d4f4fa;
+}
+
+.concluido {
+  background-color: #d0f0d0 !important;
+}
+
+.menu-dia {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.menu-opcoes {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 5px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 100;
+  min-width: 160px;
+}
+
+.menu-opcoes button {
+  display: block;
+  padding: 6px 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.menu-opcoes button:hover {
+  background: #f1f1f1;
+}
+
+.icone {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+  margin-top: 5px;
+  word-break: break-word;
+}
+
+.icone .remover {
+  margin-left: 6px;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.obs {
+  font-size: 0.8em;
+  font-style: italic;
+  background: #f9f9f9;
+  margin-top: 5px;
+  padding: 4px;
+  border-left: 2px solid #ccc;
+  display: none;
+  word-break: break-word;
+}
+
+.legenda {
+  margin: 20px;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.legenda span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
