@@ -64,12 +64,10 @@ body {
 }
 
 .dia {
-  flex: 1 1 calc(14.28% - 10px); /* 7 colunas por linha com espaçamento */
-  min-width: 120px;
-  max-width: 180px;
+  min-width: 80px;
   min-height: 100px;
   box-sizing: border-box;
-  padding: 6px;
+  padding: 4px;
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
