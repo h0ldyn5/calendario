@@ -102,7 +102,7 @@ function gerarCalendario(mes = mesAtual, ano = anoAtual) {
       </div>
     `;
   }
-}
+
 
   document.body.addEventListener('click', function (event) {
   // Verifica se o clique foi fora dos menus
