@@ -11,9 +11,17 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const docRef = db.collection("calendario").doc("dados");
 }
+const db = firebase.firestore();
+const docRef = db.collection("calendario").doc("arenaR10");
+
+docRef.get().then((doc) => {
+  if (doc.exists) {
+    console.log("Dados do Firebase:", doc.data());
+  } else {
+    console.log("Documento não encontrado.");
+  }
+});
   
 let dados = {};
 
