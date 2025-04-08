@@ -101,16 +101,14 @@ function gerarCalendario(mes = mesAtual, ano = anoAtual) {
         ${feriadoDescricao}
       </div>
     `;
-  }
+  } // <-- esta chave fecha a função gerarCalendario()
 
-
-  document.body.addEventListener('click', function (event) {
+document.body.addEventListener('click', function (event) {
   // Verifica se o clique foi fora dos menus
   if (!event.target.closest('.menu-opcoes') && !event.target.classList.contains('menu-dia')) {
     document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
   }
 });
-
   
 function toggleMenu(event, data) {
   event.stopPropagation();
