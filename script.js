@@ -9,9 +9,10 @@ const firebaseConfig = {
   measurementId: "G-3SNNHMEKG6"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const docRef = db.collection("calendario").doc("dados");
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const docRef = db.collection("calendario").doc("dados");
 
 let dados = {};
 
@@ -173,6 +174,12 @@ function mudarMes(direcao) {
     anoAtual--;
   }
   gerarCalendario();
+}
+
+function fecharMenus() {
+  // Esconder menus dropdown ou popups
+  const menus = document.querySelectorAll('.menu-aberto');
+  menus.forEach(menu => menu.classList.remove('menu-aberto'));
 }
 
 // Atualização em tempo real
