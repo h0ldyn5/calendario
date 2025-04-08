@@ -190,5 +190,3 @@ function fecharMenus() {
   const menus = document.querySelectorAll('.menu-aberto');
   menus.forEach(menu => menu.classList.remove('menu-aberto'));
 }
-
-});
