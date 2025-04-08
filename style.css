@@ -64,7 +64,6 @@ body {
 .dia {
   min-width: 80px;
   min-height: 100px;
-  flex: 1 1 14%;
   box-sizing: border-box;
   padding: 4px;
   font-size: 0.85rem;
