@@ -191,17 +191,4 @@ function fecharMenus() {
   menus.forEach(menu => menu.classList.remove('menu-aberto'));
 }
 
-// Atualização em tempo real
-console.log("Aguardando dados do Firebase...");
-
-docRef.onSnapshot((doc) => {
-  if (doc.exists) {
-    console.log("Dados carregados do Firebase:", doc.data());
-    dados = doc.data() || {};
-    gerarCalendario();
-  } else {
-    console.warn("Documento 'dados' ainda não existe no Firebase.");
-    dados = {};
-    gerarCalendario();
-  }
 });
