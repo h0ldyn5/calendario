@@ -13,7 +13,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 const db = firebase.firestore();
-const docRef = db.collection("calendario").doc("arenaR10");
+const docRef = db.collection("calendario").doc("dados");
 
 docRef.get().then((doc) => {
   if (doc.exists) {
