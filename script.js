@@ -1,4 +1,3 @@
-window.onload = () => {
 // Firebase config (substitua pelos seus dados reais)
 const firebaseConfig = {
   apiKey: "AIzaSyAnK_vQJtLNaeMFmQC6M0vCiu_ZB1E1PX0",
@@ -186,4 +185,3 @@ docRef.onSnapshot((doc) => {
     gerarCalendario();
   }
 });
-};
