@@ -63,6 +63,17 @@ body {
   margin: 0 20px;
 }
 
+.semana-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+  font-size: 0.95em;
+  padding: 6px 0;
+}
+
 .dia {
   position: relative;
   min-height: 100px;
