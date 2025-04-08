@@ -95,6 +95,14 @@ function gerarCalendario(mes = mesAtual, ano = anoAtual) {
   }
 }
 
+  document.body.addEventListener('click', function (event) {
+  // Verifica se o clique foi fora dos menus
+  if (!event.target.closest('.menu-opcoes') && !event.target.classList.contains('menu-dia')) {
+    document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
+  }
+});
+
+  
 function toggleMenu(event, data) {
   event.stopPropagation();
   document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
@@ -163,13 +171,6 @@ function mudarMes(direcao) {
   }
   gerarCalendario();
 }
-
-document.body.addEventListener('click', function (event) {
-  // Verifica se o clique foi fora dos menus
-  if (!event.target.closest('.menu-opcoes') && !event.target.classList.contains('menu-dia')) {
-    document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
-  }
-});
 
 // Atualização em tempo real
 console.log("Aguardando dados do Firebase...");
