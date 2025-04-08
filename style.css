@@ -13,7 +13,7 @@ body {
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
@@ -27,11 +27,9 @@ body {
   opacity: 0.85;
 }
 
-.cliente {
-  flex: 8;
-  text-align: left;
-  align-items: right;
-  margin: 20px;
+.info-cliente {
+  text-align: right;
+  font-size: 0.9rem;
 }
 
 .mes-navegacao {
