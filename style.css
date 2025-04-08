@@ -28,8 +28,10 @@ body {
 }
 
 .info-cliente {
-  text-align: left;
+  text-align: left; /* conteúdo dentro do bloco à esquerda */
   font-size: 0.9rem;
+  max-width: 250px; /* evita que fique estreito demais */
+  margin-left: auto; /* joga o bloco todo para a direita */
 }
 
 .mes-navegacao {
@@ -62,10 +64,12 @@ body {
 }
 
 .dia {
-  min-width: 80px;
+  flex: 1 1 calc(14.28% - 10px); /* 7 colunas por linha com espaçamento */
+  min-width: 120px;
+  max-width: 180px;
   min-height: 100px;
   box-sizing: border-box;
-  padding: 4px;
+  padding: 6px;
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
