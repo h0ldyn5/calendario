@@ -29,9 +29,9 @@ body {
 
 .cliente {
   flex: 1;
-  text-align: left;
+  text-align: right;
   align-items: right;
-  margin: 80px;
+  margin: 20px;
 }
 
 .mes-navegacao {
