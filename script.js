@@ -256,6 +256,16 @@ function createProjectBox(initialText = '') {
   projectList.appendChild(node);
 }
 
+db.collection('projetos')
+  .orderBy('criadoEm')
+  .get()
+  .then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      createProjectBox(data.texto);
+    });
+  });
+
 function finalizeProject(textarea, btn, menuContainer) {
   const texto = textarea.value.trim();
   if (!texto) return;
@@ -271,13 +281,3 @@ function finalizeProject(textarea, btn, menuContainer) {
 
   createProjectBox();
 }
-
-db.collection('projetos')
-  .orderBy('criadoEm')
-  .get()
-  .then(snapshot => {
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      createProjectBox(data.texto);
-    });
-  });
