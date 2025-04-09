@@ -189,3 +189,71 @@ function fecharMenus() {
   const menus = document.querySelectorAll('.menu-aberto');
   menus.forEach(menu => menu.classList.remove('menu-aberto'));
 }
+
+function autoGrow(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = (textarea.scrollHeight) + 'px';
+}
+
+function createProjectBox(initialText = '') {
+  const template = document.getElementById('project-template');
+  const projectList = document.getElementById('project-list');
+  const node = template.content.cloneNode(true);
+  const textarea = node.querySelector('textarea');
+  const addBtn = node.querySelector('.add-btn');
+  const seeMore = node.querySelector('.see-more');
+  const deleteBtn = node.querySelector('.delete-btn');
+  const editBtn = node.querySelector('.edit-btn');
+  const optionsMenu = node.querySelector('.options-menu');
+
+  if (initialText) textarea.value = initialText;
+
+  textarea.addEventListener('input', () => {
+    autoGrow(textarea);
+    if (textarea.scrollHeight > 60) {
+      seeMore.style.display = 'inline';
+    } else {
+      seeMore.style.display = 'none';
+    }
+  });
+
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      finalizeProject(textarea, addBtn, optionsMenu);
+    }
+  });
+
+  addBtn.addEventListener('click', () => finalizeProject(textarea, addBtn, optionsMenu));
+  seeMore.addEventListener('click', () => {
+    textarea.style.maxHeight = textarea.style.maxHeight === '200px' ? 'none' : '200px';
+  });
+
+  editBtn.addEventListener('click', () => {
+    textarea.removeAttribute('readonly');
+    textarea.focus();
+    addBtn.style.display = 'inline';
+  });
+
+  deleteBtn.addEventListener('click', () => {
+    node.firstElementChild.remove();
+  });
+
+  addBtn.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
+  });
+
+  projectList.appendChild(node);
+}
+
+function finalizeProject(textarea, btn, menu) {
+  if (!textarea.value.trim()) return;
+  textarea.setAttribute('readonly', true);
+  btn.style.display = 'none';
+  menu.style.display = 'none';
+  createProjectBox(); // Cria a próxima caixa vazia
+}
+
+// Inicializar o primeiro campo vazio
+createProjectBox();
