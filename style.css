@@ -181,3 +181,80 @@ body {
   margin-right: 6px;
   vertical-align: middle;
 }
+
+#project-section {
+  background: #ffffff;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-width: 100%;
+}
+
+#project-list textarea {
+  width: 100%;
+  min-height: 40px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#project-list .see-more {
+  font-size: 0.85rem;
+  color: #0d6efd;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#project-list .see-more:hover {
+  text-decoration: underline;
+}
+
+#project-list .add-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #0d6efd;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+#project-list .add-btn:hover {
+  color: #084298;
+}
+
+.options-menu {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.options-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.options-menu button:hover {
+  background: #f1f1f1;
+}
+
+.options-menu .delete-btn {
+  color: red;
+}
