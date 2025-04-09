@@ -52,22 +52,28 @@
   </div>
 </div>
 
-<!-- Template do projeto -->
 <template id="project-template">
   <div style="background: #fff; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: relative;">
-    <div style="display: flex; gap: 0.5rem;">
+    <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
       <textarea 
         style="flex: 1; border: 1px solid #ccc; border-radius: 0.25rem; padding: 0.5rem; resize: none;" 
         placeholder="Digite o nome do projeto..." 
         oninput="autoGrow(this)"></textarea>
-      <button class="add-btn" style="font-size: 1.5rem; font-weight: bold; color: #007bff;">+</button>
+      
+      <!-- Botão de adicionar -->
+      <button class="add-btn" style="font-size: 1.5rem; font-weight: bold; color: #0d6efd;">+</button>
+
+      <!-- Botão de 3 pontos (menu) -->
+      <div class="menu-container" style="position: relative; display: none;">
+        <button class="menu-btn" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">⋯</button>
+        <div class="options-menu" style="display: none; position: absolute; right: 0; top: 24px; background: white; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); z-index: 100;">
+          <button class="delete-btn" style="display: block; padding: 6px 12px; width: 100%; border: none; background: none; text-align: left; color: red;">Excluir</button>
+          <button class="edit-btn" style="display: block; padding: 6px 12px; width: 100%; border: none; background: none; text-align: left;">Editar</button>
+        </div>
+      </div>
     </div>
     <div style="margin-top: 0.25rem;">
-      <button class="see-more" style="font-size: 0.875rem; color: #007bff; display: none;">Ver mais</button>
-    </div>
-    <div class="options-menu" style="display: none; position: absolute; right: 0.5rem; top: 0.5rem; background: #fff; border: 1px solid #ccc; border-radius: 0.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-      <button class="delete-btn" style="display: block; padding: 0.5rem; width: 100%; border: none; background: none; text-align: left; color: red;">Excluir</button>
-      <button class="edit-btn" style="display: block; padding: 0.5rem; width: 100%; border: none; background: none; text-align: left;">Editar</button>
+      <button class="see-more" style="font-size: 0.875rem; color: #0d6efd; display: none;">Ver mais</button>
     </div>
   </div>
 </template>
