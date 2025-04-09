@@ -248,12 +248,40 @@ function createProjectBox(initialText = '') {
 }
 
 function finalizeProject(textarea, btn, menu) {
-  if (!textarea.value.trim()) return;
+  const texto = textarea.value.trim();
+  if (!texto) return;
+
   textarea.setAttribute('readonly', true);
   btn.style.display = 'none';
-  menu.style.display = 'none';
-  createProjectBox(); // Cria a próxima caixa vazia
+  if (menu) menu.style.display = 'none';
+
+  // Salvar no Firestore
+  db.collection('projetos').add({
+    texto: texto,
+    criadoEm: new Date()
+  });
+
+  createProjectBox(); // cria a nova caixa vazia
 }
 
-// Inicializar o primeiro campo vazio
-createProjectBox();
+// Carregar projetos existentes do Firestore
+db.collection('projetos')
+  .orderBy('criadoEm')
+  .get()
+  .then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      createProjectBox(data.texto);
+    });
+  });
+
+deleteBtn.addEventListener('click', () => {
+  const texto = textarea.value.trim();
+  db.collection('projetos')
+    .where('texto', '==', texto)
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => doc.ref.delete());
+    });
+  node.firstElementChild.remove();
+});
