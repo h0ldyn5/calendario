@@ -1,9 +1,9 @@
-// Firebase config (substitua pelos seus dados reais)
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAnK_vQJtLNaeMFmQC6M0vCiu_ZB1E1PX0",
   authDomain: "calendariohorizon-a66ce.firebaseapp.com",
   projectId: "calendariohorizon-a66ce",
-  storageBucket: "calendariohorizon-a66ce.firebasestorage.app",
+  storageBucket: "calendariohorizon-a66ce.appspot.com",
   messagingSenderId: "253407645877",
   appId: "1:253407645877:web:007168909639fadb326efc",
   measurementId: "G-3SNNHMEKG6"
@@ -15,16 +15,6 @@ if (!firebase.apps.length) {
 const db = firebase.firestore();
 const docRef = db.collection("calendario").doc("dados");
 
-docRef.get().then((doc) => {
-  if (doc.exists) {
-    console.log("Dados do Firebase:", doc.data());
-    dados = doc.data();
-    gerarCalendario(); // <- carrega dados se existirem
-  } else {
-    console.log("Documento não encontrado.");
-  }
-});
-  
 let dados = {};
 
 const feriadosDetalhados = {
@@ -44,6 +34,16 @@ let anoAtual = 2025;
 function salvar() {
   docRef.set(dados);
 }
+
+docRef.get().then((doc) => {
+  if (doc.exists) {
+    console.log("Dados do Firebase:", doc.data());
+    dados = doc.data();
+    gerarCalendario();
+  } else {
+    console.log("Documento não encontrado.");
+  }
+});
 
 function gerarCalendario(mes = mesAtual, ano = anoAtual) {
   const calendario = document.getElementById('calendario');
@@ -104,9 +104,8 @@ function gerarCalendario(mes = mesAtual, ano = anoAtual) {
       </div>
     `;
   }
-} // ← FECHA corretamente a função gerarCalendario()
+}
 
-// Evento para fechar menus ao clicar fora
 document.body.addEventListener('click', function (event) {
   if (!event.target.closest('.menu-opcoes') && !event.target.classList.contains('menu-dia')) {
     document.querySelectorAll('.menu-opcoes').forEach(el => el.style.display = 'none');
@@ -205,6 +204,8 @@ function createProjectBox(initialText = '') {
   const deleteBtn = node.querySelector('.delete-btn');
   const editBtn = node.querySelector('.edit-btn');
   const optionsMenu = node.querySelector('.options-menu');
+  const menuContainer = node.querySelector('.menu-container');
+  const menuBtn = node.querySelector('.menu-btn');
 
   if (initialText) textarea.value = initialText;
 
@@ -220,13 +221,19 @@ function createProjectBox(initialText = '') {
   textarea.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      finalizeProject(textarea, addBtn, optionsMenu);
+      finalizeProject(textarea, addBtn, menuContainer);
     }
   });
 
-  addBtn.addEventListener('click', () => finalizeProject(textarea, addBtn, optionsMenu));
+  addBtn.addEventListener('click', () => finalizeProject(textarea, addBtn, menuContainer));
+
   seeMore.addEventListener('click', () => {
     textarea.style.maxHeight = textarea.style.maxHeight === '200px' ? 'none' : '200px';
+  });
+
+  menuBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
   });
 
   editBtn.addEventListener('click', () => {
@@ -236,35 +243,35 @@ function createProjectBox(initialText = '') {
   });
 
   deleteBtn.addEventListener('click', () => {
+    const texto = textarea.value.trim();
+    db.collection('projetos')
+      .where('texto', '==', texto)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => doc.ref.delete());
+      });
     node.firstElementChild.remove();
-  });
-
-  addBtn.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
   });
 
   projectList.appendChild(node);
 }
 
-function finalizeProject(textarea, btn, menu) {
+function finalizeProject(textarea, btn, menuContainer) {
   const texto = textarea.value.trim();
   if (!texto) return;
 
   textarea.setAttribute('readonly', true);
   btn.style.display = 'none';
-  if (menu) menu.style.display = 'none';
+  if (menuContainer) menuContainer.style.display = 'block';
 
-  // Salvar no Firestore
   db.collection('projetos').add({
     texto: texto,
     criadoEm: new Date()
   });
 
-  createProjectBox(); // cria a nova caixa vazia
+  createProjectBox();
 }
 
-// Carregar projetos existentes do Firestore
 db.collection('projetos')
   .orderBy('criadoEm')
   .get()
@@ -274,14 +281,3 @@ db.collection('projetos')
       createProjectBox(data.texto);
     });
   });
-
-deleteBtn.addEventListener('click', () => {
-  const texto = textarea.value.trim();
-  db.collection('projetos')
-    .where('texto', '==', texto)
-    .get()
-    .then(snapshot => {
-      snapshot.forEach(doc => doc.ref.delete());
-    });
-  node.firstElementChild.remove();
-});
